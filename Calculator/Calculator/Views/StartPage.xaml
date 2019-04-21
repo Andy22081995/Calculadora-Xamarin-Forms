@@ -1,0 +1,206 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Calculator.Views.StartPage"
+             xmlns:vm="clr-namespace:Calculator.ViewModels"
+             BindingContext="{Binding Main, Source={StaticResource Locator}}"
+             Title="Calculadora">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Historial de cálculo" 
+                     Order="Secondary"
+                     Command="{Binding StartVM.CalculationHistoryCommand}"/>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <ScrollView BindingContext="{Binding StartVM}">
+            <StackLayout Padding="16"
+                         VerticalOptions="CenterAndExpand"
+                         HorizontalOptions="CenterAndExpand">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    
+                    <Entry Text="{Binding Input, Mode=TwoWay}"
+                           IsReadOnly="True"
+                           Grid.Column="0"
+                           Grid.ColumnSpan="4" 
+                           Grid.Row="0"
+                           Keyboard="Numeric"
+                           FontSize="40"
+                           HorizontalTextAlignment="End"/>
+
+                    <!-- Columna 1 -->
+                    <Button Text="DEL"
+                            CornerRadius="36"
+                            Grid.ColumnSpan="2"
+                            Grid.Column="2" 
+                            Grid.Row="1"
+                            BackgroundColor="DarkRed"
+                            TextColor="White"
+                            Command="{Binding DeleteCommand}"/>
+
+                    <Button Text="CE" 
+                            CornerRadius="36"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="2"
+                            Grid.Row="1"
+                            BackgroundColor="DarkOrange"
+                            TextColor="White"
+                            Command="{Binding ClearCommand}"/>
+
+                    <Button Text="/" 
+                            CornerRadius="72"
+                            Grid.Column="3" 
+                            Grid.Row="2"
+                            BackgroundColor="Gray"
+                            TextColor="White"
+                            Command="{Binding AddOperatorCommand}"
+                            CommandParameter=" / "/>
+
+                    <!-- Columna 2 -->
+                    <Button Text="7"
+                            CornerRadius="72"
+                            Grid.Column="0" 
+                            Grid.Row="2"
+                            BackgroundColor="Gray"
+                            TextColor="White"
+                            Command="{Binding AddNumberCommand}"
+                            CommandParameter="7"/>
+
+                    <Button Text="8" 
+                            CornerRadius="72"
+                            Grid.Column="1" 
+                            Grid.Row="2"
+                            BackgroundColor="Gray"
+                            TextColor="White"
+                            Command="{Binding AddNumberCommand}"
+                            CommandParameter="8"/>
+
+                    <Button Text="9" 
+                            CornerRadius="72"
+                            Grid.Column="2" 
+                            Grid.Row="2"
+                            BackgroundColor="Gray"
+                            TextColor="White"
+                            Command="{Binding AddNumberCommand}"
+                            CommandParameter="9"/>
+
+                    <Button Text="X" 
+                            CornerRadius="72"
+                            Grid.Column="3" 
+                            Grid.Row="3"
+                            BackgroundColor="Gray"
+                            TextColor="White"
+                            Command="{Binding AddOperatorCommand}"
+                            CommandParameter=" * "/>
+
+                    <!-- Columna 3 -->
+                    <Button Text="4"
+                            CornerRadius="72"
+                            Grid.Column="0" 
+                            Grid.Row="3"
+                            BackgroundColor="Gray"
+                            TextColor="White"
+                            Command="{Binding AddNumberCommand}"
+                            CommandParameter="4"/>
+
+                    <Button Text="5" 
+                            CornerRadius="72"
+                            Grid.Column="1" 
+                            Grid.Row="3"
+                            BackgroundColor="Gray"
+                            TextColor="White"
+                            Command="{Binding AddNumberCommand}"
+                            CommandParameter="5"/>
+
+                    <Button Text="6" 
+                            CornerRadius="72"
+                            Grid.Column="2" 
+                            Grid.Row="3"
+                            BackgroundColor="Gray"
+                            TextColor="White"
+                            Command="{Binding AddNumberCommand}"
+                            CommandParameter="6"/>
+
+                    <Button Text="-" 
+                            CornerRadius="72"
+                            Grid.Column="3" 
+                            Grid.Row="4"
+                            BackgroundColor="Gray"
+                            TextColor="White"
+                            Command="{Binding AddOperatorCommand}"
+                            CommandParameter=" - "/>
+
+                    <!-- Columna 4 -->
+                    <Button Text="1"
+                            CornerRadius="72"
+                            Grid.Column="0" 
+                            Grid.Row="4"
+                            BackgroundColor="Gray"
+                            TextColor="White"
+                            Command="{Binding AddNumberCommand}"
+                            CommandParameter="1"/>
+
+                    <Button Text="2" 
+                            CornerRadius="72"
+                            Grid.Column="1" 
+                            Grid.Row="4"
+                            BackgroundColor="Gray"
+                            TextColor="White"
+                            Command="{Binding AddNumberCommand}"
+                            CommandParameter="2"/>
+
+                    <Button Text="3" 
+                            CornerRadius="72"
+                            Grid.Column="2" 
+                            Grid.Row="4"
+                            BackgroundColor="Gray"
+                            TextColor="White"
+                            Command="{Binding AddNumberCommand}"
+                            CommandParameter="3"/>
+
+                    <Button Text="+" 
+                            CornerRadius="72"
+                            Grid.Column="3" 
+                            Grid.Row="5"
+                            BackgroundColor="Gray"
+                            TextColor="White"
+                            Command="{Binding AddOperatorCommand}"
+                            CommandParameter=" + "/>
+
+                    <!-- Columna 5 -->
+                    <Button Text="0"
+                            CornerRadius="72"
+                            Grid.Column="0" 
+                            Grid.Row="5"
+                            BackgroundColor="Gray"
+                            TextColor="White"
+                            Command="{Binding AddNumberCommand}"
+                            CommandParameter="0"/>
+
+                    <Button Text="="
+                            CornerRadius="36"
+                            Grid.Column="1"
+                            Grid.ColumnSpan="2"
+                            Grid.Row="5"
+                            BackgroundColor="DarkGray"
+                            TextColor="White"
+                            Command="{Binding ResolveCommand}"/>
+
+                </Grid>
+            </StackLayout>            
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

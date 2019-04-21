@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:forms="clr-namespace:Lottie.Forms;assembly=Lottie.Forms"
+             x:Class="Calculator.Views.CalculationHistoryPage"
+             BindingContext="{Binding Main, Source={StaticResource Locator}}"
+             Title="Historial de cálculo">
+    <ContentPage.Content>
+        <StackLayout>
+            <ListView x:Name="ListViewItems"
+                      SelectionMode="None"
+                      HasUnevenRows="True"
+                      SeparatorVisibility="None">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout>
+                                <Label Text="{Binding Expression, StringFormat='Expresión: {0:N}'}" 
+                                       Margin="10"/>
+                                
+                                <Label Text="{Binding Result, StringFormat='Resultado: {0:N}'}" 
+                                       Margin="10"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
