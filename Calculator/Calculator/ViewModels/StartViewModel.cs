@@ -158,7 +158,7 @@
             App.DbController.SaveOrUpdate(new History { Expression = Input, Result = Output });
 
             await Application.Current.MainPage.DisplayAlert("Resultado", Output, "Aceptar");
-            Input = string.Empty;
+
             RefreshCanExecutes();
             return;
         }
