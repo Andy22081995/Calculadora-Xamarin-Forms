@@ -31,14 +31,6 @@ namespace Calculator.Controller
             }
         }
 
-        public int Save(History history)
-        {
-            lock(locker)
-            {
-                return this.database.Insert(history);
-            }
-        }
-
         public int SaveOrUpdate(History history)
         {
             lock (locker)
@@ -59,15 +51,7 @@ namespace Calculator.Controller
         {
             lock (locker)
             {
-                return this.database.Delete(id);
-            }
-        }
-
-        public int DeleteAll()
-        {
-            lock (locker)
-            {
-                return this.database.DeleteAll<History>();
+                return this.database.Delete<History>(id);
             }
         }
     }

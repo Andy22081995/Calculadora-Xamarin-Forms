@@ -4,8 +4,7 @@ namespace Calculator.Models
 {
     public class History
     {
-        [PrimaryKey]
-        [AutoIncrement]
+        [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
 
         public string Expression { get; set; }

@@ -14,6 +14,11 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
+                            <ViewCell.ContextActions>
+                                <MenuItem Icon="ic_delete_white_24dp.png" 
+                                          Clicked="MenuItem_Clicked" 
+                                          CommandParameter="{Binding .}"/>
+                            </ViewCell.ContextActions>
                             <StackLayout>
                                 <Label Text="{Binding Expression, StringFormat='Expresión: {0:N}'}" 
                                        Margin="10"/>

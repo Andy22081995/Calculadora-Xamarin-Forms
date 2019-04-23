@@ -25,18 +25,34 @@ namespace Calculator.Views
 
         private void Init()
         {
-            var enumerator = App.DbController.GetDBItems();
-            if (enumerator == null)
+            try
             {
-                App.DbController.SaveOrUpdate(new History { Id = 0, Expression = "1 + 2 + 3 + 4", Result = "10" });
-                enumerator = App.DbController.GetDBItems();
+                var enumerator = App.DbController.GetDBItems();
+                if (enumerator == null)
+                {
+                    App.DbController.SaveOrUpdate(new History { Id = 0, Expression = "1 + 2 + 3 + 4", Result = "10" });
+                    enumerator = App.DbController.GetDBItems();
+                }
+
+                while (enumerator.MoveNext())
+                {
+                    this.items.Add(enumerator.Current);
+                }
+
+                ListViewItems.ItemsSource = this.items;
             }
-            while (enumerator.MoveNext())
+            catch (Exception ex)
             {
-                this.items.Add(enumerator.Current);
+                throw ex;
             }
-            enumerator.Reset();
-            ListViewItems.ItemsSource = this.items;
+        }
+
+        private void MenuItem_Clicked(object sender, EventArgs e)
+        {
+            var item = (MenuItem)sender;
+            var model = (History)item.CommandParameter;
+            this.items.Remove(model);
+            App.DbController.DeleteItem(model.Id);
         }
     }
 }
