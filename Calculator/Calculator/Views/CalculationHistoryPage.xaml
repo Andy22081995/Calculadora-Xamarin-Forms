@@ -9,8 +9,7 @@
         <StackLayout>
             <ListView x:Name="ListViewItems"
                       SelectionMode="None"
-                      HasUnevenRows="True"
-                      SeparatorVisibility="None">
+                      HasUnevenRows="True">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -21,10 +20,10 @@
                             </ViewCell.ContextActions>
                             <StackLayout>
                                 <Label Text="{Binding Expression, StringFormat='Expresión: {0:N}'}" 
-                                       Margin="10"/>
+                                       Margin="10, 10, 10, 5"/>
                                 
                                 <Label Text="{Binding Result, StringFormat='Resultado: {0:N}'}" 
-                                       Margin="10"/>
+                                       Margin="10, 5, 10, 10"/>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>
