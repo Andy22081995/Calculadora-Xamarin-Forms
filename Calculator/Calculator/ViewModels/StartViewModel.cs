@@ -59,6 +59,8 @@
                 {
                     if (string.IsNullOrEmpty(this.Input))
                         return false;
+                    if (this.Input.Contains("="))
+                        return false;
                     if (char.IsDigit(this.Input[this.Input.Length - 1]))
                         return true;
                     else
@@ -74,6 +76,8 @@
                 canExecute: () =>
                 {
                     if (string.IsNullOrEmpty(this.Input))
+                        return false;
+                    if (this.Input.Contains("="))
                         return false;
                     else
                         return true;
@@ -100,7 +104,6 @@
                         this.Input = this.Input.Remove(this.Input.Length - 3, 3);
                     else if (!string.IsNullOrEmpty(Input))
                         this.Input = this.Input.Remove(this.Input.Length - 1, 1);
-
                     RefreshCanExecutes();
                 },
                 canExecute: () =>
@@ -153,11 +156,11 @@
             ((Command)this.DeleteCommand).ChangeCanExecute();
         }
 
-        private async void DisplayResult()
+        private void DisplayResult()
         {
             App.DbController.SaveOrUpdate(new History { Expression = Input, Result = Output });
 
-            await Application.Current.MainPage.DisplayAlert("Resultado", Output, "Aceptar");
+            Input = $"{ Input } = { Output }";
 
             RefreshCanExecutes();
             return;
