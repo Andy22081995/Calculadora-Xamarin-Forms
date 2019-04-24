@@ -64,7 +64,8 @@ namespace Calculator.Views
 
         private async void ToolbarItem_Clicked(object sender, EventArgs e)
         {
-            if (Items.Count == 0)
+            var enumerator2 = App.DbController.GetDBItems();
+            if (enumerator2 == null)
             {
                 await App.Current.MainPage.DisplayAlert(
                     "Error",
@@ -83,6 +84,7 @@ namespace Calculator.Views
                 {
                     this.Items.Clear();
                     App.DbController.DeleteAll();
+
                     var enumerator = App.DbController.GetDBItems();
                     if (enumerator == null)
                         IsEnumeratorEmpty(true, enumerator);
