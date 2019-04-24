@@ -1,6 +1,5 @@
-﻿using System;
+﻿using System.Collections;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Calculator.Extensions
 {
@@ -8,13 +7,14 @@ namespace Calculator.Extensions
     {
         public T Current => default(T);
 
-        object System.Collections.IEnumerator.Current
+        object IEnumerator.Current
         {
             get
             {
                 return this.Current;
             }
         }
+
         public void Dispose()
         {
 
