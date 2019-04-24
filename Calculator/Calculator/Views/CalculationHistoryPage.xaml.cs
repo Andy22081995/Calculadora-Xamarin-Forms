@@ -1,5 +1,6 @@
 ﻿using Calculator.Extensions;
 using Calculator.Models;
+using Calculator.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -13,6 +14,8 @@ namespace Calculator.Views
     public partial class CalculationHistoryPage : ContentPage
     {
         public ObservableCollection<History> Items = new ObservableCollection<History>();
+
+        public new bool IsVisible { get; set; }
 
         public CalculationHistoryPage()
         {
@@ -53,12 +56,23 @@ namespace Calculator.Views
                 enumerator = new EmptyEnumerator<History>();
                 EmptyState.IsVisible = true;
                 ListViewItems.IsVisible = false;
+                IsVisible = false;
             }
             else
             {
                 EmptyState.IsVisible = false;
                 ListViewItems.IsVisible = true;
+                IsVisible = true;
             }
+        }
+
+        private void HideableToolbarItem_Clicked(object sender, EventArgs e)
+        {
+            this.Items.Clear();
+            App.DbController.DeleteAll();
+            var enumerator = App.DbController.GetDBItems();
+            if (enumerator == null)
+                IsEnumeratorEmpty(true, enumerator);
         }
     }
 }

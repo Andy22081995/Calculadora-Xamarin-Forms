@@ -54,5 +54,13 @@ namespace Calculator.Controller
                 return this.database.Delete<History>(id);
             }
         }
+
+        public int DeleteAll()
+        {
+            lock (locker)
+            {
+                return this.database.DeleteAll<History>();
+            }
+        }
     }
 }
