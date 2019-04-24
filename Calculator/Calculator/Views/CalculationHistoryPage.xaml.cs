@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-
+using System.Runtime.InteropServices;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -24,9 +24,7 @@ namespace Calculator.Views
             var enumerator = App.DbController.GetDBItems();
             if (enumerator == null)
             {
-                enumerator = new EmptyEnumerator<History>();
-                EmptyState.IsVisible = true;
-                ListViewItems.IsVisible = false;
+                IsEnumeratorEmpty(true, enumerator);
             }
             else
             {
@@ -34,8 +32,7 @@ namespace Calculator.Views
                 {
                     this.Items.Add(enumerator.Current);
                 }
-                EmptyState.IsVisible = false;
-                ListViewItems.IsVisible = true;
+                IsEnumeratorEmpty(false);
                 ListViewItems.ItemsSource = this.Items;
             }
         }
@@ -49,9 +46,22 @@ namespace Calculator.Views
             var enumerator = App.DbController.GetDBItems();
             if (enumerator == null)
             {
+                IsEnumeratorEmpty(true, enumerator);
+            }
+        }
+
+        private void IsEnumeratorEmpty(bool empty, [Optional] IEnumerator<History> enumerator)
+        {
+            if (empty)
+            {
                 enumerator = new EmptyEnumerator<History>();
                 EmptyState.IsVisible = true;
                 ListViewItems.IsVisible = false;
+            }
+            else
+            {
+                EmptyState.IsVisible = false;
+                ListViewItems.IsVisible = true;
             }
         }
     }
