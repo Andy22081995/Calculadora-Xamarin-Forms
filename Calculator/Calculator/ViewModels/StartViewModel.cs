@@ -79,8 +79,10 @@
                         return false;
                     if (this.Input.Contains("="))
                         return false;
-                    else
+                    if (char.IsDigit(this.Input[this.Input.Length - 1]))
                         return true;
+                    else
+                        return false;
                 });
 
             this.ClearCommand = new Command(
