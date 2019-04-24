@@ -64,19 +64,29 @@ namespace Calculator.Views
 
         private async void ToolbarItem_Clicked(object sender, EventArgs e)
         {
-            var result = await App.Current.MainPage.DisplayAlert(
-                "Borrar historial", 
-                "Se borrará todas las operaciones realizadas. ¿Borrar?", 
-                "Sí", 
-                "No");
-
-            if (result)
+            if (Items.Count == 0)
             {
-                this.Items.Clear();
-                App.DbController.DeleteAll();
-                var enumerator = App.DbController.GetDBItems();
-                if (enumerator == null)
-                    IsEnumeratorEmpty(true, enumerator);
+                await App.Current.MainPage.DisplayAlert(
+                    "Borrar historial",
+                    "No hay elementos para eliminar. Debe realizar una operación antes.",
+                    "Aceptar");
+            }
+            else
+            {
+                var result = await App.Current.MainPage.DisplayAlert(
+                    "Borrar historial",
+                    "Se borrará todas las operaciones realizadas. ¿Borrar?",
+                    "Sí",
+                    "No");
+
+                if (result)
+                {
+                    this.Items.Clear();
+                    App.DbController.DeleteAll();
+                    var enumerator = App.DbController.GetDBItems();
+                    if (enumerator == null)
+                        IsEnumeratorEmpty(true, enumerator);
+                }
             }
         }
     }
