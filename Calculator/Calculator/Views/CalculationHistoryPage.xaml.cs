@@ -62,13 +62,22 @@ namespace Calculator.Views
             }
         }
 
-        private void HideableToolbarItem_Clicked(object sender, EventArgs e)
+        private async void ToolbarItem_Clicked(object sender, EventArgs e)
         {
-            this.Items.Clear();
-            App.DbController.DeleteAll();
-            var enumerator = App.DbController.GetDBItems();
-            if (enumerator == null)
-                IsEnumeratorEmpty(true, enumerator);
+            var result = await App.Current.MainPage.DisplayAlert(
+                "Borrar historial", 
+                "Se borrará todas las operaciones realizadas. ¿Borrar?", 
+                "Sí", 
+                "No");
+
+            if (result)
+            {
+                this.Items.Clear();
+                App.DbController.DeleteAll();
+                var enumerator = App.DbController.GetDBItems();
+                if (enumerator == null)
+                    IsEnumeratorEmpty(true, enumerator);
+            }
         }
     }
 }
