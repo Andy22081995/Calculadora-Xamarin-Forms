@@ -11,7 +11,7 @@ namespace Calculator.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CalculationHistoryPage : ContentPage
     {
-        public ObservableCollection<History> items = new ObservableCollection<History>();
+        public ObservableCollection<History> Items = new ObservableCollection<History>();
 
         public CalculationHistoryPage()
         {
@@ -32,11 +32,11 @@ namespace Calculator.Views
             {
                 while (enumerator.MoveNext())
                 {
-                    this.items.Add(enumerator.Current);
+                    this.Items.Add(enumerator.Current);
                 }
                 EmptyState.IsVisible = false;
                 ListViewItems.IsVisible = true;
-                ListViewItems.ItemsSource = this.items;
+                ListViewItems.ItemsSource = this.Items;
             }
         }
 
@@ -44,10 +44,15 @@ namespace Calculator.Views
         {
             var item = (MenuItem)sender;
             var model = (History)item.CommandParameter;
-            this.items.Remove(model);
+            this.Items.Remove(model);
             App.DbController.DeleteItem(model.Id);
-            EmptyState.IsVisible = true;
-            ListViewItems.IsVisible = false;
+            var enumerator = App.DbController.GetDBItems();
+            if (enumerator == null)
+            {
+                enumerator = new EmptyEnumerator<History>();
+                EmptyState.IsVisible = true;
+                ListViewItems.IsVisible = false;
+            }
         }
     }
     public class EmptyEnumerator<T> : IEnumerator<T>
