@@ -30,8 +30,8 @@ namespace Calculator.Views
                 var enumerator = App.DbController.GetDBItems();
                 if (enumerator == null)
                 {
-                    App.DbController.SaveOrUpdate(new History { Id = 0, Expression = "1 + 2 + 3 + 4", Result = "10" });
-                    enumerator = App.DbController.GetDBItems();
+                    //App.DbController.SaveOrUpdate(new History { Id = 0, Expression = "1 + 2 + 3 + 4", Result = "10" });
+                    //enumerator = App.DbController.GetDBItems();
                 }
 
                 while (enumerator.MoveNext())

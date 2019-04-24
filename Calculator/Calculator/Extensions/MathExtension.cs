@@ -16,7 +16,6 @@
         #endregion
 
         #region Internal tokens
-
         private const string Plus = OperatorMarker + "+";
         private const string UnPlus = OperatorMarker + "un+";
         private const string Minus = OperatorMarker + "-";
@@ -38,7 +37,6 @@
         private const string Ln = FunctionMarker + "ln";
         private const string Exp = FunctionMarker + "exp";
         private const string Abs = FunctionMarker + "abs";
-
         #endregion
 
         #region Dictionaries
@@ -83,7 +81,6 @@
             {"pi", NumberMaker + Math.PI.ToString() },
             {"e", NumberMaker + Math.E.ToString() }
             };
-
         #endregion
 
         #endregion
@@ -699,7 +696,6 @@
                     throw new ArgumentException("Operador desconocido");
             }
         }
-
         #endregion
     }
 }
