@@ -1,4 +1,5 @@
-﻿using Calculator.Models;
+﻿using Calculator.Extensions;
+using Calculator.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -23,15 +24,12 @@ namespace Calculator.Views
         {
             var enumerator = App.DbController.GetDBItems();
             if (enumerator == null)
-            {
                 IsEnumeratorEmpty(true, enumerator);
-            }
             else
             {
                 while (enumerator.MoveNext())
-                {
                     this.Items.Add(enumerator.Current);
-                }
+
                 IsEnumeratorEmpty(false);
                 ListViewItems.ItemsSource = this.Items;
             }
@@ -45,9 +43,7 @@ namespace Calculator.Views
             App.DbController.DeleteItem(model.Id);
             var enumerator = App.DbController.GetDBItems();
             if (enumerator == null)
-            {
                 IsEnumeratorEmpty(true, enumerator);
-            }
         }
 
         private void IsEnumeratorEmpty(bool empty, [Optional] IEnumerator<History> enumerator)
@@ -63,34 +59,6 @@ namespace Calculator.Views
                 EmptyState.IsVisible = false;
                 ListViewItems.IsVisible = true;
             }
-        }
-    }
-    public class EmptyEnumerator<T> : IEnumerator<T>
-    {
-
-        public T Current
-        {
-            get
-            {
-                return default(T);
-            }
-        }
-        object System.Collections.IEnumerator.Current
-        {
-            get
-            {
-                return this.Current;
-            }
-        }
-        public void Dispose()
-        {
-        }
-        public bool MoveNext()
-        {
-            return false;
-        }
-        public void Reset()
-        {
         }
     }
 }
