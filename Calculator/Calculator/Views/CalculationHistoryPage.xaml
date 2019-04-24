@@ -6,7 +6,7 @@
              Title="Historial de cálculo">
     <ContentPage.ToolbarItems>
         <ToolbarItem Icon="ic_delete_white_24dp"
-                                    Clicked="HideableToolbarItem_Clicked"/>
+                     Clicked="HideableToolbarItem_Clicked"/>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout>
@@ -25,8 +25,7 @@
             </StackLayout>
             <ListView x:Name="ListViewItems"
                       SelectionMode="None"
-                      HasUnevenRows="True"
-                      IsVisible="False">
+                      HasUnevenRows="True">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
