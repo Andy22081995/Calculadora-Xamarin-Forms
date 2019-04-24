@@ -1,11 +1,7 @@
 ﻿using Calculator.Models;
-using Calculator.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -23,6 +19,8 @@ namespace Calculator.Views
             Init();
         }
 
+ 
+
         private void Init()
         {
             try
@@ -30,16 +28,17 @@ namespace Calculator.Views
                 var enumerator = App.DbController.GetDBItems();
                 if (enumerator == null)
                 {
-                    App.DbController.SaveOrUpdate(new History { Id = 0, Expression = "1 + 2 + 3 + 4", Result = "10" });
-                    enumerator = App.DbController.GetDBItems();
+                    enumerator = new EmptyEnumerator<History>();
                 }
-
-                while (enumerator.MoveNext())
+                else
                 {
-                    this.items.Add(enumerator.Current);
-                }
+                    while (enumerator.MoveNext())
+                    {
+                        this.items.Add(enumerator.Current);
+                    }
 
-                ListViewItems.ItemsSource = this.items;
+                    ListViewItems.ItemsSource = this.items;
+                }
             }
             catch (Exception ex)
             {
@@ -53,6 +52,34 @@ namespace Calculator.Views
             var model = (History)item.CommandParameter;
             this.items.Remove(model);
             App.DbController.DeleteItem(model.Id);
+        }
+    }
+    public class EmptyEnumerator<T> : IEnumerator<T>
+    {
+
+        public T Current
+        {
+            get
+            {
+                return default(T);
+            }
+        }
+        object System.Collections.IEnumerator.Current
+        {
+            get
+            {
+                return this.Current;
+            }
+        }
+        public void Dispose()
+        {
+        }
+        public bool MoveNext()
+        {
+            return false;
+        }
+        public void Reset()
+        {
         }
     }
 }

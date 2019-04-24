@@ -7,9 +7,22 @@
              Title="Historial de cálculo">
     <ContentPage.Content>
         <StackLayout>
+            <StackLayout VerticalOptions="CenterAndExpand"
+                         HorizontalOptions="CenterAndExpand">
+                <forms:AnimationView x:Name="LottieView" 
+                                     Animation="dino.json" 
+                                     Loop="True" 
+                                     AutoPlay="True"
+                                     HeightRequest="300"
+                                     WidthRequest="300"
+                                     VerticalOptions="StartAndExpand"/>
+                <Label Text="No hay registro del historial"
+                       HorizontalOptions="Center"/>
+            </StackLayout>
             <ListView x:Name="ListViewItems"
                       SelectionMode="None"
-                      HasUnevenRows="True">
+                      HasUnevenRows="True"
+                      IsVisible="False">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
