@@ -80,7 +80,6 @@
     <Compile Include="SQLiteAndroid.cs" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidAsset Include="Assets\clock.json" />
     <AndroidAsset Include="Assets\searchpro.json" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
