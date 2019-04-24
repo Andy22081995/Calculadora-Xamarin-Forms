@@ -67,15 +67,15 @@ namespace Calculator.Views
             if (Items.Count == 0)
             {
                 await App.Current.MainPage.DisplayAlert(
-                    "Borrar historial",
+                    "Error",
                     "No hay elementos para eliminar. Debe realizar una operación antes.",
                     "Aceptar");
             }
             else
             {
                 var result = await App.Current.MainPage.DisplayAlert(
-                    "Borrar historial",
-                    "Se borrará todas las operaciones realizadas. ¿Borrar?",
+                    "Aviso",
+                    "Se borrará todo el historial. ¿Borrar?",
                     "Sí",
                     "No");
 
