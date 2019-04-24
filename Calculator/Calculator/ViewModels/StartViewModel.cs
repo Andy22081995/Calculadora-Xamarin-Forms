@@ -137,7 +137,7 @@
             }
             else
             {
-                Output = "Error en la sintaxis";
+                Output = "Error";
             }
         }
 
