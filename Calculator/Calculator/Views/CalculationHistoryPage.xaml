@@ -2,12 +2,10 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:forms="clr-namespace:Lottie.Forms;assembly=Lottie.Forms"
-             xmlns:custom="clr-namespace:Calculator.Extensions"
              x:Class="Calculator.Views.CalculationHistoryPage"
              Title="Historial de cálculo">
     <ContentPage.ToolbarItems>
-        <custom:HideableToolbarItem Icon="ic_delete_white_24dp"
-                                    IsVisible="{Binding IsVisible, Mode=TwoWay}"
+        <ToolbarItem Icon="ic_delete_white_24dp"
                                     Clicked="HideableToolbarItem_Clicked"/>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>

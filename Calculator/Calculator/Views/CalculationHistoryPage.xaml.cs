@@ -14,9 +14,7 @@ namespace Calculator.Views
     public partial class CalculationHistoryPage : ContentPage
     {
         public ObservableCollection<History> Items = new ObservableCollection<History>();
-
-        public new bool IsVisible { get; set; }
-
+        
         public CalculationHistoryPage()
         {
             InitializeComponent();
@@ -56,13 +54,11 @@ namespace Calculator.Views
                 enumerator = new EmptyEnumerator<History>();
                 EmptyState.IsVisible = true;
                 ListViewItems.IsVisible = false;
-                IsVisible = false;
             }
             else
             {
                 EmptyState.IsVisible = false;
                 ListViewItems.IsVisible = true;
-                IsVisible = true;
             }
         }
 
