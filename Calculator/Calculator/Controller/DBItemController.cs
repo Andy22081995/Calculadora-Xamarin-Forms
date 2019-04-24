@@ -1,6 +1,5 @@
 ﻿using Calculator.Models;
 using SQLite;
-using System.Collections;
 using System.Collections.Generic;
 using Xamarin.Forms;
 

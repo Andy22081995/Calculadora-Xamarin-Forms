@@ -19,30 +19,24 @@ namespace Calculator.Views
             Init();
         }
 
- 
-
         private void Init()
         {
-            try
+            var enumerator = App.DbController.GetDBItems();
+            if (enumerator == null)
             {
-                var enumerator = App.DbController.GetDBItems();
-                if (enumerator == null)
-                {
-                    enumerator = new EmptyEnumerator<History>();
-                }
-                else
-                {
-                    while (enumerator.MoveNext())
-                    {
-                        this.items.Add(enumerator.Current);
-                    }
-
-                    ListViewItems.ItemsSource = this.items;
-                }
+                enumerator = new EmptyEnumerator<History>();
+                EmptyState.IsVisible = true;
+                ListViewItems.IsVisible = false;
             }
-            catch (Exception ex)
+            else
             {
-                throw ex;
+                while (enumerator.MoveNext())
+                {
+                    this.items.Add(enumerator.Current);
+                }
+                EmptyState.IsVisible = false;
+                ListViewItems.IsVisible = true;
+                ListViewItems.ItemsSource = this.items;
             }
         }
 
@@ -52,6 +46,8 @@ namespace Calculator.Views
             var model = (History)item.CommandParameter;
             this.items.Remove(model);
             App.DbController.DeleteItem(model.Id);
+            EmptyState.IsVisible = true;
+            ListViewItems.IsVisible = false;
         }
     }
     public class EmptyEnumerator<T> : IEnumerator<T>
